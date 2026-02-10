@@ -14,18 +14,18 @@ default_args = {
 }
 
 with DAG(
-    'postgres_reader',
+    'example_postgres_read',
     default_args=default_args,
-    description='Простой DAG для чтения из PostgreSQL через Spark',
     schedule_interval=None,
     catchup=False,
+    tags=['example']
 ) as dag:
 
     start = DummyOperator(task_id='start')
     
     read_postgres = SparkSubmitOperator(
         task_id='read_postgres',
-        application='/usr/local/airflow/dags/spark_scripts/read_postgres.py',
+        application='/usr/local/airflow/dags/spark_scripts/example_read_postgres.py',
         conn_id='spark_default',
         verbose=True,
         application_args=[

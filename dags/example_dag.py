@@ -18,11 +18,11 @@ default_args = {
 }
 
 with DAG(
-    'test_dag',
+    'example_dag',
     default_args=default_args,
-    description='A simple test DAG',
     schedule_interval='@once',
-    catchup=False
+    catchup=False,
+    tags=['example']
 ) as dag:
 
     start = DummyOperator(
